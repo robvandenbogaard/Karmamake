@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title><%= title -%></title>
+	<meta name="keywords" content="karma,javascript,html5,<%= title -%>" />
+	<link type="text/css" rel="stylesheet" href="css/lesson.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link type="image/ico" rel="icon" href="../../assets/default/images/favicon.ico" /> 
+	<link type="text/css" rel="stylesheet" href="css/lesson.css" />
+	<script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="js/lesson.js"></script>
+</head>
+<body>
+	<div id ="scoreArea">
+		<form name="scoreDisplay">
+			<b>Score:</b> <input type="text" size="1" name="score">
+			<b>Total:</b> <input type="text" size="1" name="total">
+		</form>
+		<a href="#" id="anchorPlayAgain"><img class="playAgain" src="assets/images/play_again.jpg" alt=""></a>
+	</div>
+	<div id="gameArea">
+		<div id="questionBox">What is this?</div>
+		<img class = "imageBox" id="imgObject" src="" alt="">
+		<img class="checkedOption" id="check" src="" alt="">
+		
+		<div id="options">
+			<a href="#" id="anchorOpt0"><img class="optImg" id="option0" src="" alt=""></a>
+			<a href="#" id="anchorOpt1"><img class="optImg" id="option1" src="" alt=""></a>
+			<a href="#" id="anchorOpt2"><img class="optImg" id="option2" src="" alt=""></a>
+			<a href="#" id="anchorOpt3"><img class="optImg" id="option3" src="" alt=""></a>
+		</div>
+		
+		<div id="gameOver" style= "display:none">
+			Game Over
+		</div>
+	</div>
+</body>
+</html>

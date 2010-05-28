@@ -1,0 +1,65 @@
+Titel: Wat hoort bij wat?
+Identificatie: EN-001
+Werkvorm: Benoem het plaatje
+Omschrijving: Selecteer de juiste Engelse dierennaam bij de afbeelding.
+Leerdoel: Leren van Engelse dierennamen
+
+Opbouw:
+  Uitleg:
+    Beginscherm met uitlegplaatje, tekst en knop
+    Met knop Verder ga je naar Selecteer dierennamen
+  Selecteer dierennamen:
+    Repeterende activiteit Kies naam, aan de hand van een lijst
+    Aan het eind ga je naar Score
+  Kies naam:
+    Vraag met dierenplaatje, naamopties en knop
+    Met knop Stop ga je naar Score
+    Een goed antwoord activeert Naam goed
+    Een verkeerd antwoord activeert Naam fout
+  Naam goed:
+    Animatie met plaatje en geluid
+    Ga naar volgende in de lijst
+  Naam fout:
+    Animatie met plaatje en geluid
+    Rapportcijfer Aantal pogingen +1
+    Ga naar volgende in de lijst
+  Score:
+    Scherm met rapport, tekst en knop
+    Met knop Verder ga je naar Einde
+  Einde:
+    Scherm met plaatje, tekst en knoppen
+    Met knop Opnieuw begin je opnieuw
+    Met knop Stoppen sluit je af
+
+Rapport:
+  Identificatie
+  Werktijd
+  Aantal pogingen
+  Aantal dieren
+
+Onderdelen:
+  Uitleg:
+    Tekst:
+      Klik de Engelse dierennaam aan die past bij het plaatje.
+    Achtergrond:
+      uitleg-achtergrond.svg
+    Uitlegplaatje:
+      uitleg.svg
+  Selecteer dierennamen:
+    Lijst:
+      EN-001-Animals.txt
+  Kies naam:
+    Dierenplaatje:
+      eerste veld uit lijst
+    Naamopties:
+      namen.txt
+  Naam goed:
+    TODO!
+  Naam fout:
+    TODO!
+  Score:
+    TODO!
+  Einde:  
+    Achtergrond:
+      achtergrond.svg
+

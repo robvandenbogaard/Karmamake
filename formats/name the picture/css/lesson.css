@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+body {
+  background: url(../assets/images/background.jpg) no-repeat;
+}
+
+
+#gameArea{
+	margin-top:5%;
+	margin-left: 10%;
+	float: left;
+	width: 50%
+	padding:10px;
+}
+
+
+#questionBox{
+	color: red;
+	border: 3px outset #0AF9dd;
+	width: 150px;
+	padding: 5px;
+	background: #2EFEF7;
+	font: 20px "Helvetica", Verdana, Geneva, Arial, sans-serif;
+	font-weight: bold;
+	
+}
+.imageBox{
+	margin-top: 25px;
+	margin-left: 30px;
+	width: 220px;
+    height: 220px;
+	padding: 10px;
+}
+
+.checkedOption{
+	margin-top: 100px;
+	width:120px;
+	height:120px;
+	padding: 5px;
+}
+
+#options{
+	margin-left:25px;
+	margin-top:50px;
+	width:600px;
+	height:80px;
+	padding: 10px;
+}
+
+.optImg{
+	width:120px;
+	height: 40px;
+	background-color: yellow;
+	padding:5px;
+	border: 2px solid green;
+}
+
+#scoreArea{
+	color: red;
+	width: 40%;
+	padding: 5px;;
+	background: #FFFFFF;
+	border: 2px solid red;
+	background: black;
+	padding: 10px;
+}
+.playAgain{
+	position:absolute;
+	top: 10px;
+	margin-left:220px;
+	width:115px;
+	height: 30px;
+	padding: 2px 2px 2px 2px;
+	}
+input{
+	color:green;
+	
+}
+#gameOver{
+	margin-left:300px;
+	width: 180px;
+	height: 20px;
+	font: 25px "Rockwell Extra Bold", Geneva, Arial, Helvetica, sans-serif,Times New Roman;
+	font-weight: bold;
+	background-color: #ccc;
+	padding: 10px;
+}
