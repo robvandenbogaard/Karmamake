@@ -24,7 +24,6 @@ class Languages
   end
 
   def self.translate_from(text, languagecode = DEFAULT_LANGUAGE)
-p [text, languagecode]
     text = text.to_s
     return text if languagecode == DEFAULT_LANGUAGE
     read if @@languages.empty?
@@ -59,7 +58,6 @@ class Specification
   def initialize(specfilename)
     @specification = YAML.load_file specfilename
     @languagecode = symbol(:lingua)
-p @languagecode
     @languagecode ||= Languages.default
   end
 
@@ -67,12 +65,18 @@ p @languagecode
     value translated normalized key
   end
 
+  def translated_value(key)
+    Languages.translate_from(normalized(value(translated(normalized(key)))), @languagecode)
+  end
+
   def value(key)
-    @specification[key]
+    v = @specification[key]
+    v = @specification[key.capitalize] unless v
   end
   
   def symbol(key)
-    @specification[normalized key].to_sym rescue nil
+    normkey = normalized key
+    @specification[normkey].to_sym rescue @specification[normkey.capitalize].to_sym rescue nil
   end
 
   def normalized(key)
@@ -80,7 +84,7 @@ p @languagecode
   end
 
   def translated(key)
-    Languages.translate_from key, @languagecode
+    Languages.translate_to key, @languagecode
   end
 
 end
@@ -94,7 +98,7 @@ class Build
     @lesson_id = lesson_id
     puts 'Make lesson package ' + lesson_id + ':'
     @specification = Specification.new CONTENT+lesson_id+'/script.yaml'
-    formatdir = FORMATS+@specification[:form]
+    formatdir = FORMATS+@specification.translated_value(:form)
     # make dir for lesson
     lessondir = LESSONS+lesson_id
     FileUtils.rm_r lessondir if File.directory? lessondir
@@ -105,12 +109,19 @@ class Build
     #FileUtils.makedirs targetdir
     p sourcedir
     p targetdir
-    list = Dir[sourcedir]
+    list = Dir[sourcedir+'/*']
     list.each { |path|
       next if ['.', '..'].include? path
-      if path.is_directory?
-        traverse path, targetdir+path[/\/(.+)/][1..-1]
+      if File.directory? path
+        traverse path, targetdir+'/'+path.split('/')[2..-1].join('/')
       else
+        if path.split('.')[-1] == 'erb'
+          target = path.split('.')[1..-2].join('.')
+          target = targetdir+'/'+path.split('/')[2..-1].join('/')
+          puts "parse template '#{path}' and output to #{target}"
+        else
+          puts "copy '#{path}' to '#{targetdir}'"
+        end
       end
     }
   end
