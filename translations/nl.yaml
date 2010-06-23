@@ -7,9 +7,9 @@ setup: opbouw
 report: rapport
 parts: onderdelen
 time spent: werktijd
-number of #{1}: aantal #{1}
+number of {1}: aantal {1}
 attempts: pogingen
 name the picture: benoem het plaatje
 button: knop
-#{1} activates #{2}: #{1} activeert #{2}
+"{1} activates {2}": "{1} activeert {2}"
 
