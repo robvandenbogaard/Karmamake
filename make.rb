@@ -7,6 +7,7 @@ CONTENT = 'content/'
 FORMATS = 'formats/'
 TRANS = 'translations/'
 LESSONS = 'lessons/'
+SCRIPT = 'script.yaml'
 DEFAULT_LANGUAGE = :en
 
 class Languages
@@ -113,7 +114,9 @@ class Build
     end
     puts "Make lesson package '#{lesson_id}':"
 
-    @specification = Specification.new CONTENT+lesson_id+'/script.yaml'
+    contentdir = CONTENT+lesson_id
+
+    @specification = Specification.new contentdir+'/'+SCRIPT
     format = @specification.translated_value(:form)
     if not format or format.empty?
       puts 'No format specified, skipping this lesson!'
@@ -127,14 +130,9 @@ class Build
     puts "Starting with an empty destination directory '#{lessondir}'"
     FileUtils.rm_r lessondir if File.directory? lessondir
 
-    traverse formatdir, lessondir, create_context
-  end
-  
-  def create_context
-    # eval 'key = value', binding
-    # iterate over all definitions in the spec
-    @specification.bind binding
-    binding
+    context = @specification.bind binding
+    traverse formatdir, lessondir, context
+    traverse contentdir, lessondir, context
   end
 
   def traverse sourcedir, targetdir, context = nil
@@ -143,12 +141,14 @@ class Build
     FileUtils.makedirs targetdir
     list = Dir[sourcedir+'/*']
     list.each { |path|
-      next if ['.', '..'].include? path
+      localpath = path.split('/').last
+      next if localpath == SCRIPT
+      next if ['.', '..'].include? localpath
       if File.directory? path
-        traverse path, targetdir+'/'+path.split('/')[2..-1].join('/'), context
+        traverse path, targetdir+'/'+localpath, context
       else
         if path.split('.')[-1] == 'erb'
-          target = targetdir+'/'+path.split('/')[2..-1].join('/').split('.')[0..-2].join('.')
+          target = targetdir+'/'+localpath.split('.')[0..-2].join('.')
           puts "Parsing template '#{path}', writing output to '#{target}'"
           template = ERB.new File.new(path).read, nil, "%"
           result = template.result(context)
