@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby 
 require 'yaml'
 require 'fileutils'
+require 'erb'
 
 CONTENT = 'content/'
 FORMATS = 'formats/'
@@ -27,14 +28,16 @@ class Languages
     text = text.to_s
     return text if languagecode == DEFAULT_LANGUAGE
     read if @@languages.empty?
-    @@languages[languagecode][:from][text] rescue text
+    translation = @@languages[languagecode][:from][text] rescue text
+    translation ||= text
   end
 
   def self.translate_to(text, languagecode = DEFAULT_LANGUAGE)
     text = text.to_s
     return text if languagecode == DEFAULT_LANGUAGE
     read if @@languages.empty?
-    @@languages[languagecode][:to][text] rescue text
+    translation = @@languages[languagecode][:to][text] rescue text
+    translation ||= text
   end
 
 private
@@ -59,19 +62,19 @@ class Specification
     @specification = YAML.load_file specfilename
     @languagecode = symbol(:lingua)
     @languagecode ||= Languages.default
+    translate_keys
   end
 
   def [](key)
-    value translated normalized key
+    value key
   end
 
   def translated_value(key)
-    Languages.translate_from(normalized(value(translated(normalized(key)))), @languagecode)
+    Languages.translate_from(normalized(value(key)), @languagecode)
   end
 
   def value(key)
-    v = @specification[key]
-    v = @specification[key.capitalize] unless v
+    v = @specification[key.to_s]
   end
   
   def symbol(key)
@@ -83,44 +86,76 @@ class Specification
     key = key.to_s.downcase
   end
 
-  def translated(key)
-    Languages.translate_to key, @languagecode
+  def translate_keys
+    translated_spec = {}
+    @specification.each { |key,value|
+      translated_spec[Languages.translate_from(normalized(key), @languagecode)] = value
+    }
+    @specification = translated_spec
   end
 
+  def bind(context)
+    @specification.each { |key,value|
+      eval "#{key} = '#{value}'", context
+    }
+    context
+  end
 end
 
 class Build
 
-  @lesson_id
   @specification
 
   def initialize(lesson_id)
-    @lesson_id = lesson_id
-    puts 'Make lesson package ' + lesson_id + ':'
+    if not lesson_id or lesson_id.empty?
+      puts 'No lesson id specified, skipping this lesson!'
+      return
+    end
+    puts "Make lesson package '#{lesson_id}':"
+
     @specification = Specification.new CONTENT+lesson_id+'/script.yaml'
-    formatdir = FORMATS+@specification.translated_value(:form)
-    # make dir for lesson
+    format = @specification.translated_value(:form)
+    if not format or format.empty?
+      puts 'No format specified, skipping this lesson!'
+      return
+    end
+    puts "Using lesson format'#{format}'"
+    
+    formatdir = FORMATS+format
     lessondir = LESSONS+lesson_id
+    
+    puts "Starting with an empty destination directory '#{lessondir}'"
     FileUtils.rm_r lessondir if File.directory? lessondir
-    traverse formatdir, lessondir
+
+    traverse formatdir, lessondir, create_context
+  end
+  
+  def create_context
+    # eval 'key = value', binding
+    # iterate over all definitions in the spec
+    @specification.bind binding
+    binding
   end
 
-  def traverse sourcedir, targetdir
-    #FileUtils.makedirs targetdir
-    p sourcedir
-    p targetdir
+  def traverse sourcedir, targetdir, context = nil
+    puts "Reading from '#{sourcedir}'"
+    puts "Creating '#{targetdir}'"
+    FileUtils.makedirs targetdir
     list = Dir[sourcedir+'/*']
     list.each { |path|
       next if ['.', '..'].include? path
       if File.directory? path
-        traverse path, targetdir+'/'+path.split('/')[2..-1].join('/')
+        traverse path, targetdir+'/'+path.split('/')[2..-1].join('/'), context
       else
         if path.split('.')[-1] == 'erb'
-          target = path.split('.')[1..-2].join('.')
-          target = targetdir+'/'+path.split('/')[2..-1].join('/')
-          puts "parse template '#{path}' and output to #{target}"
+          target = targetdir+'/'+path.split('/')[2..-1].join('/').split('.')[0..-2].join('.')
+          puts "Parsing template '#{path}', writing output to '#{target}'"
+          template = ERB.new File.new(path).read, nil, "%"
+          result = template.result(context)
+          File.open(target, 'w') {|f| f.write(result) }
         else
-          puts "copy '#{path}' to '#{targetdir}'"
+          puts "Copying '#{path}' to '#{targetdir}'"
+          FileUtils.copy path, targetdir
         end
       end
     }
