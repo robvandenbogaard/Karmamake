@@ -10,6 +10,8 @@ LESSONS = 'lessons/'
 SCRIPT = 'script.yaml'
 DEFAULT_LANGUAGE = :en
 
+@verbose = 0
+
 class Languages
 
   @@languages = {}
@@ -97,7 +99,7 @@ class Specification
 
   def bind(context)
     @specification.each { |key,value|
-      eval "#{key} = '#{value}'", context
+      eval "#{key.downcase} = \"#{value}\"", context
     }
     context
   end
@@ -117,27 +119,29 @@ class Build
     contentdir = CONTENT+lesson_id
 
     @specification = Specification.new contentdir+'/'+SCRIPT
-    format = @specification.translated_value(:form)
+    format = @specification.translated_value(:format)
     if not format or format.empty?
       puts 'No format specified, skipping this lesson!'
       return
     end
-    puts "Using lesson format'#{format}'"
+    puts "Using lesson format '#{format}'"
     
     formatdir = FORMATS+format
     lessondir = LESSONS+lesson_id
     
-    puts "Starting with an empty destination directory '#{lessondir}'"
+    puts "Starting with an empty destination directory '#{lessondir}'" if @verbose
     FileUtils.rm_r lessondir if File.directory? lessondir
 
     context = @specification.bind binding
     traverse formatdir, lessondir, context
     traverse contentdir, lessondir, context
+    
+    puts "Lesson package '#{lesson_id}' is ready."
   end
 
   def traverse sourcedir, targetdir, context = nil
-    puts "Reading from '#{sourcedir}'"
-    puts "Creating '#{targetdir}'"
+    puts "Reading from '#{sourcedir}'" if @verbose
+    puts "Creating '#{targetdir}'" if @verbose
     FileUtils.makedirs targetdir
     list = Dir[sourcedir+'/*']
     list.each { |path|
@@ -149,12 +153,12 @@ class Build
       else
         if path.split('.')[-1] == 'erb'
           target = targetdir+'/'+localpath.split('.')[0..-2].join('.')
-          puts "Parsing template '#{path}', writing output to '#{target}'"
+          puts "Parsing template '#{path}', writing output to '#{target}'" if @verbose
           template = ERB.new File.new(path).read, nil, "%"
           result = template.result(context)
           File.open(target, 'w') {|f| f.write(result) }
         else
-          puts "Copying '#{path}' to '#{targetdir}'"
+          puts "Copying '#{path}' to '#{targetdir}'" if @verbose
           FileUtils.copy path, targetdir
         end
       end
@@ -164,9 +168,20 @@ class Build
 end
 
 # param: lesson id(s) (subfolder of 'content/')
-lesson_ids = ARGV.empty? ? Dir[CONTENT+'*'].map{|path| path[/\/(.+)/][1..-1]} : ARGV
+lesson_ids = []
+ARGV.each { |a|
+  case a
+  when '-v':
+    puts 'VERBOSE MODE'
+    @verbose = 1
+  else
+    lesson_ids << a
+  end
+}
+lesson_ids = Dir[CONTENT+'*'].map{|path| path[/\/(.+)/][1..-1]} if lesson_ids.empty?
 p lesson_ids
 lesson_ids.each do |lesson_id|
+  puts  
   Build.new lesson_id
 end
 

@@ -1,9 +1,10 @@
 title: titel
 identification: identificatie
-form: werkvorm
+format: werkvorm
 description: omschrijving
 goal: leerdoel
 setup: opbouw
+introduction: uitleg
 report: rapport
 parts: onderdelen
 time spent: werktijd
