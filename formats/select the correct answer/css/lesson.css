@@ -1,0 +1,221 @@
+@CHARSET "UTF-8";
+/****** Page Styles ****/
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	margin: 0px;
+	background-color: #FFFFCC;
+}
+#header {
+	background-image: url(../assets/images/bg_header.png);
+	background-repeat: repeat-x;
+	height: 89px;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+#topbtn_left {
+	float: left;
+	height: 60px;
+	width: 60px;
+	padding-top: 13px;
+	padding-left: 5px;
+}
+	
+	
+	#linkBack{
+			width: 60px;		height: 59px;
+			background:url(../assets/images/btn_back.png);
+		}
+	#linkBack:hover{
+			background:url(../assets/images/btn_back_hover.png);
+		}
+	
+#lesson_title {
+	float: left;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16pt;
+	font-weight: bold;
+	color: #FFFFFF;
+	margin-left: 10px;
+	background-image: url(../assets/images/bg_title_block.png);
+}
+#topbtn_right {
+	float: right;
+	height: 60px;
+	width: 60px;
+	padding-top: 13px;
+	padding-right: 5px;
+}
+		#linkHelp{
+			width: 60px;		height: 60px;
+			background:url(../assets/images/btn_help.png);
+		}
+		#linkHelp:hover{
+			background:url(../assets/images/btn_help_hover.png);
+		}
+		#linkOle{
+			width: 60px;		height: 60px;
+			background:url(../assets/images/btn_ole.png);
+		}
+		#linkOle:hover{
+			background:url(../assets/images/btn_ole_hover.png);
+		}
+		#linkNext{
+			width: 60px;		height: 60px;
+			background:url(../assets/images/btn_next.png);
+		}
+		#linkNext:hover{
+			background:url(../assets/images/btn_next_hover.png);
+		}
+#footer {
+	background-image: url(../assets/images/bg_footer.png);
+	background-repeat: repeat-x;
+	position: absolute;
+	height: 69px;
+	width: 100%;
+	left: 0px;
+	bottom: 0px;
+}
+#score_box {
+	float: left;
+	padding-left: 10px;
+	padding-top: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #FFFF00;
+	font-size: 16pt;
+	font-weight: bold;
+}
+#botbtn_right {
+	float: right;
+	height: 55px;
+	width: 251px;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+	#linkStart{
+			width: 251px;		height: 55px;
+			background:url(../assets/images/btn_start.png);
+		}
+		#linkStart:hover{
+			background:url(../assets/images/btn_start_hover.png);
+		}
+		#linkStart:active{
+			background:url(../assets/images/btn_start_mouse_down.png);
+		}
+		#linkPlayAgain{
+			width: 251px;		height: 55px;
+			background:url(../assets/images/btn_play_again.png);
+		}
+		#linkPlayAgain:hover{
+			background:url(../assets/images/btn_play_again_hover.png);
+		}
+		#linkPlayAgain:active{
+			background:url(../assets/images/btn_play_again_mouse_down.png);
+		}
+
+/**** End of the page style ****/
+
+/**** Game Styles  ****/
+
+a{
+	color:#FFFFCC;
+}
+#currentTitle{
+	width: 150px;
+	height: 80xp;
+	font:25px/30px "Courier New", Courier, monospace;	
+	font-weight: bold;
+	color: red;
+}
+#content{	
+	margin: 0px auto;
+	margin-top: 90px;
+	width: 95%;
+	height: 375px;
+
+}
+#section{	
+	margin: 0px auto;		
+}
+
+	#topText{
+		width: 350px;
+		height:25px;
+		font: 15px/20px Arial, Helvetica, sans-serif;
+		color: #FF9900;
+	}
+	#question{
+		margin-left: 15px;
+		padding:5px;		
+		height:30px;
+		font: 20px/25px Arial, Helvetica, sans-serif;
+		color: #0000FF;
+	}
+	#answer{
+		margin-left: 40px;
+		padding:5px;	
+		height:30px;
+		font: 20px/25px Arial, Helvetica, sans-serif;
+		color: #000000;
+	}
+
+
+	#optionSection{
+		margin-top:20px;
+		margin-left:40px;
+		width: 450px;
+		height: 250px;
+	}
+	.options{
+		float:left;
+		width: 44px;
+		height: 46px;
+	}
+	.check{
+		margin-top: 10px;
+		float:left;
+		width: 36px;
+		height: 32px;
+	}
+	.optionText{
+		float:right;
+		margin-left:0.7em;
+		width: 350px;
+		height: 46px;
+		font: 18px/50px Arial, Helvetica, sans-serif;
+		color: #000000;
+	}
+
+	#imgStory{
+		position:absolute;
+		top: 30%;
+		right: 2%;		
+	}
+
+#gameOver{
+	margin-top:45px;
+	text-align:center;
+	font: 30px/35px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:red;		
+}
+#gameOverInfo{
+	margin-top: 35px;
+	text-align:center;
+	font: 20px/25px Helvetica, Geneva, Arial, Verdana, sans-serif;
+	font-weight:bold;
+	color:#000000;
+	
+}
+.specialText{
+	font: 20px/25px Helvetica, Geneva, Arial, Verdana, sans-serif;
+	font-weight:bold;
+	color:#FF9900;
+	border-bottom: 2px dotted #CCC;
+	
+}
+
+

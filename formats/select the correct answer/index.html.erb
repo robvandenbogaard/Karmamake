@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+	<title><%= title %></title>
+	<meta name="keywords" content="karma,javascript,html5,sugar,sugarlabs,gsoc,ole,nepal" />
+	<link type="text/css" rel="stylesheet" href="css/lesson.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link type="image/ico" rel="icon" href="../../assets/default/images/favicon.ico" /> 
+	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="js/lesson.js"></script>
+</head>
+<body>
+	<div id="header">
+		<div id="topbtn_left"><a href="http://olenepal.org"><div id="linkOle"></div></a></div>
+		<div id="lesson_title">
+			<img src="assets/images/title_block_lt.png" width="33" height="89" align="absmiddle" />
+				<%= title %><span id="currentTitle"></span> 
+			<img src="assets/images/title_block_rt.png" width="33" height="89" align="absmiddle" />
+		</div>
+		<div id="topbtn_right"><a href="#"><div id="linkHelp"></div></a></div>
+		<div id="topbtn_right"><a href="http://olenepal.org"><div id="linkOle"></div></a></div>		
+		<div id="topbtn_right"><a href="#"><div id="linkNext"></div></a></div>
+	</div>
+
+	<div id="content">
+		<div id="section">
+			<div id="topText">
+				Click on the answer you think is correct.
+			</div>
+			<div id="question"></div>
+			<div id="answer"></div>
+			<div id="optionSection"></div>
+			<div id="imgStory"></div>
+		</div>
+		<div id="help"></div>
+	</div>
+	<form name="delayForm">
+		<input type="hidden" name="delayval" size="5">
+	</form>
+	
+
+	<div id="footer">
+		<div id="score_box">
+			<form name="scoreForm">
+				Score: 
+				  <input name="score" type="text" id="score" size="2" maxlength="2" /> |
+			      <input name="full_mark" type="text" id="full_mark" size="2" maxlength="2"/>
+			</form>
+		</div>
+			<div id="botbtn_right"><a href="#"><div id="linkStart"></div></a></div>				
+			<div id="botbtn_right"><a href="#"><div id="linkPlayAgain"></div></a></div>
+		
+	</div>
+</body>
+</html>
