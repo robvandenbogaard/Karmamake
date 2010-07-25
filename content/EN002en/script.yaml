@@ -6,75 +6,103 @@ Goal: Practice consolidation of factual knowledge collected by listening to a st
 
 Setup:
   Introduction:
-    Screen with descriptive image, text and button
-    The Next button brings you to Answer the questions
+  - Screen with descriptive image, text and button
+  - The Next button brings you to Answer the questions
   Answer the questions:
-    Repeating activity Answer question, from the list
-    At the end, go to Score
+  - Repeating activity Answer question, from the list
+  - At the end, go to Score
   Answer question:  
-    Question with image, text and options
-    A correct answer brings you to Answer is correct
-    An incorrect answer brings you to Answer is incorrect
+  - Question with image, text and options
+  - A correct answer brings you to Answer is correct
+  - An incorrect answer brings you to Answer is incorrect
   Answer is correct:
-    Animation with image and sound
-    Report Correct answers +1
-    Report Answered questions +1
-    Proceed with next in list
+  - Animation with image and sound
+  - Report Correct answers +1
+  - Report Answered questions +1
+  - Proceed with next in list
   Answer is incorrect:
-    Animation with image and sound
-    Report Answered questions +1
-    Proceed with next in list
+  - Animation with image and sound
+  - Report Answered questions +1
+  - Proceed with next in list
   Score:
-    Screen with report, text and button
-    Button Next brings you to End
+  - Screen with report, text and button
+  - Button Next brings you to End
   End:
-    Screen with image, text and buttons
-    Button Again restarts the lesson
-    Button Stop quits the lesson
+  - Screen with image, text and buttons
+  - Button Again restarts the lesson
+  - Button Stop quits the lesson
 
 Report:
-  Identification
-  Spent time
-  Correct answers
-  Number of questions answered
+- Identification
+- Spent time
+- Correct answers
+- Number of questions answered
+
+Questions:
+- Where did the bird live
+- Where did Raju hide the rope
+- Where did the wolf come out of
+- What did the wolf chase
+- Why was Raju Sad
+- Whom did Raju lived with
+- Where did the grandfather go next day
+- What did the cat do when it saw the wolf
+- What did Raju do with the loop of rope
+- "Why was Raju's grandfather happy"
+
+Answers:
+- The bird lived:
+  - in a tree
+  - in a house in the midddle of the forest
+  - on a pond
+  - in the sky
+- Raju hid the rope:
+  - under his bed
+  - in the garden
+  - in the forest
+  - in the tree
+- The wolf came out of:
+  - the forest
+  - the house
+  - the pond
+  - the tree
+- The wolf chased:
+  - the duck
+  - the cat
+  - the boy
+  - the bird
+- Raju was sad because:
+  - he killed the wolf
+  - he saved three lives
+  - the hunter took away the dead wolf
+  - his grandfather was very happy with him
+- Raju lived with:
+  - his grandfather
+  - the cat
+  - the dog
+  - the bird
+- The next day grandfather went to:
+  - the garden
+  - the market
+  - the forest
+  - the tree
+- When it saw the wolf the cat:
+  - mewed and ran away
+  - quacked and ran away
+  - flew into the tree
+  - ran into the forest
+- Raju dropped the loop of rope:
+  - "over the wolf's head"
+  - round a strong branch
+  - "round the cat's neck"
+  - "round the duck's feet"
+- "Raju's grandfather was happy because":
+  - Raju saved three lives
+  - Raju hid the rope under his bed
+  - Raju went outside the gate
+  - Raju gave the dead wolf to the hunters
 
 Parts:
-  Questions:
-  - Where did the bird live
-  - Where did Raju hide the rope
-  - Where did the wolf come out of
-  - What did the wolf chase
-  - Why was Raju Sad
-  - Whom did Raju lived with
-  - Where did the grandfather go next day
-  - What did the cat do when it saw the wolf
-  - What did Raju do with the loop of rope
-  - "Why was Raju's grandfather happy"
-
-  AnswerPrefixes:
-  - The bird lived
-  - Raju hid the rope
-  - The wolf came out of
-  - The wolf chased
-  - Raju was sad because
-  - Raju lived with
-  - The next day grandfather went to
-  - When it saw the wolf the cat
-  - Raju dropped the loop of rope
-  - "Raju's grandfather was happy because"
-
-  Answers:
-  - in a tree,in a house in the midddle of the forest,on a pond,in the sky
-  - under his bed,in the garden,in the forest,in the tree
-  - the forest,the house,the pond,the tree
-  - the duck,the cat,the boy,the bird
-  - he killed the wolf,he saved three lives,the hunter took away the dead wolf,his grandfather was very happy with him
-  - his grandfather,the cat,the dog,the bird
-  - the garden,the market,the forest,the tree
-  - mewed and ran away,quacked and ran away,flew into the tree,ran into the forest
-  - "over the wolf's head,round a strong branch,round the cat's neck,round the duck's feet"
-  - Raju saved three lives,Raju hid the rope under his bed,Raju went outside the gate,Raju gave the dead wolf to the hunters
-
   Introduction:
     Text:
       Select the correct answer.

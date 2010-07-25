@@ -7,11 +7,11 @@ $(document).ready(function() {
 	var currentObj; //store the current object clicked
 	var NUM_OBJECTS = 4; //no of options
 	var flag_correct;  
-	var questions = new Array(<%= parts['Questions'].join(',') %>);
-	var answerPrefixes = new Array(<%= parts['AnswerPrefixes'].join(',') %>);
+	var questions = new Array(<%= '"'+questions.join('","')+'"' %>);
+	var answerPrefixes = new Array(<%= '"'+answers.collect{|a| a.keys.collect {|a| a}}.flatten.join('","')+'"' %>);
 
 	//current answer among four stored at first 4 options for each questions
-	var answers = new Array(<%= parts['Answers'].join(',') %>);
+	var answers = new Array(<%= '"'+answers.collect{|a| a.values.collect {|a| a}}.flatten.join('","')+'"' %>);
 
 		var optionImg = new Array('a','b','c','d');
 	

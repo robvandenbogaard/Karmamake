@@ -99,7 +99,7 @@ class Specification
 
   def bind(context)
     @specification.each { |key,value|
-      eval "#{key.downcase} = \"#{value}\"", context
+      eval "#{key.downcase} = " + value.inspect, context
     }
     context
   end
