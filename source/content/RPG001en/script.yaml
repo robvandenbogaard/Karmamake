@@ -1,0 +1,12 @@
+Title: RPG Test
+Identification: RPG-001
+Format: rpg
+Description: Education by gaming.
+Goal: Play a game and learn something
+
+Information:
+  Story: "You are a lapricorn walking around in learning land.
+    Look around carefully and examine things that are lying around."
+  Instructions: "Use the arrow keys to move.
+    When asked a question, answer with the appropriate letter to continue."
+
