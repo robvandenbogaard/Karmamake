@@ -9,9 +9,13 @@ For every lesson content directory in 'source/content' the make.rb tool reads in
 In the script you specify the lesson format and style to use.
 Those are read from 'source/formats' and 'source/styles' respectively.
 
-Rob van den Bogaard, 2011-01-17
+Executing the Ruby script source/make.rb in the source directory generates the lessons.
+You can view a lesson by clicking the index.html file in any of the generated lesson directories.
 
-==== REDESIGN ====
+Rob van den Bogaard, 2011-01-18
+
+
+==== REDESIGN THOUGHTS ====
 
 /lessons --> output for complete lessons
 /source/storyboards --> text scripts for lesson outlines
