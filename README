@@ -3,4 +3,61 @@ Karma lessons should be easy to make. Especially the ones that are very similar 
 Let's have a templating system, and very readable lesson specifications.
 Share your thoughts!
 
-Rob van den Bogaard, 2010-05-28
+Everything to create lessons is in the 'source' directory.
+The created lessons will end up in the 'lessons' directory.
+For every lesson content directory in 'source/content' the make.rb tool reads in the script file (script.yaml).
+In the script you specify the lesson format and style to use.
+Those are read from 'source/formats' and 'source/styles' respectively.
+
+Rob van den Bogaard, 2011-01-17
+
+==== REDESIGN ====
+
+/lessons --> output for complete lessons
+/source/storyboards --> text scripts for lesson outlines
+/source/content --> text scripts for learning content
+/source/interaction --> javascript interaction library, html entry point(s)
+/source/style --> svg/html/css designs
+
+example:
+/source/style/daddy duck/ contains:
+  markup for entry point
+  
+
+  storyboard:
+    start:
+      interaction: explanation
+      when:
+        next: find the gem
+    find the gem:
+      interaction: rpg seek
+      when:
+        found: make sums
+    make sums:
+      interaction: fill blanks
+      when:
+        ready: show score
+    show score:
+      interaction: score board
+      when:
+        next: start
+
+  content:
+    title:
+      Multiplication
+    style:
+      Daddy duck
+      
+    start:
+      text: In this lesson we will explore the wonders of multiplication.
+
+lesson specification text script
+learning content text script
+storyboard text script: creates an interactive story by defining a flow of interactions
+lesson constructor ruby script: generates lessons by reading templates and filling in blanks
+interaction component javascript: defines an interaction between the player and the lesson
+audio-visual design svg/html/css/image/font/sound files: provides template or scene to put the interaction in and style them
+
+use placeholders everywhere:
+- values from content get inserted in interaction script by element id
+- interaction components get inserted into style templates by interaction name and element id
